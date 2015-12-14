@@ -18,10 +18,12 @@ class Config {
 				'db_engine' => 'mysql',
 				'db_server' => 'localhost',
 				'db_database' => 'solisbar_hagane',
-				'db_user' => 'solisbar_dev',
-				'db_password' => 'palitroche1!',
+				// 'db_user' => 'solisbar_dev',
+				// 'db_password' => 'palitroche1!',
+				'db_user' => 'root',
+				'db_password' => '',
 				'session_time' => 3600,
-				'document_root' => '/'
+				'document_root' => '/hgn/'
 			);
 	}
 
