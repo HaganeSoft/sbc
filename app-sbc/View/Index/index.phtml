@@ -1,1 +1,63 @@
 Forma
+
+<style>
+
+.ng-hide, [ng-cloak] {
+	display: none !important;
+}
+
+.ng-show {
+	display: block !important;
+}
+</style>
+	<form>
+
+<div ng-tabs class="tabbable">
+	<div class="control-group">
+		<button class="btn btn-primary" ng-click="tabs.index = tabs.index - 1" ng-disabled="tabs.index == 1">Prev tab</button>
+		<button class="btn btn-primary" ng-click="tabs.index = tabs.index + 1" ng-disabled="tabs.index == tabs.count" >Next tab</button>
+	</div>
+
+	<ul class="nav nav-pills nav-stacked" style="width: 100px;  float:left; ">
+		<li ng-tab-head="active">
+			<a href="#" ng-click="$event.preventDefault()">Tab 1</a>
+		</li>
+		<li ng-tab-head>
+			<a href="#" ng-click="$event.preventDefault()">Tab 2</a>
+		</li>
+		<li ng-tab-head>
+			<a href="#" ng-click="$event.preventDefault()">Tab 3</a>
+		</li>
+	</ul>
+		<div class="tab-content" style="width: 500px; float:left; ">
+			<div ng-tab-body="" class="tab-pane">
+				<input type="text" placeholder="Nombre" ng-model="forma.nombre">
+				<input type="text" placeholder="Apellido" ng-model="forma.apellido">
+				<input type="text" placeholder="Edad" ng-model="forma.edad">
+				<input type="text" placeholder="Lugar de residencia" ng-model="forma.residencia">
+				<input type="text" placeholder="Teléfono" ng-model="forma.telefono">
+				<input type="text" placeholder="Email" ng-model="forma.email">
+				<input type="text" placeholder="Sexo" ng-model="forma.sexo">
+			</div>
+			<div ng-tab-body="" class="tab-pane">
+				<input type="text" placeholder="Carrera" ng-model="forma.carrera">
+				<input type="text" placeholder="Institución" ng-model="forma.inst_carrera">
+				<input type="text" placeholder="Maestría" ng-model="forma.maestria">
+				<input type="text" placeholder="Institución" ng-model="forma.inst_maestria">
+				<input type="text" placeholder="Inglés" ng-model="forma.ingles">
+				<input type="text" placeholder="Otros idiomas" ng-model="forma.otros_idiomas">
+			</div>
+			<div ng-tab-body="" class="tab-pane">
+				<input type="text" placeholder="Último puesto" ng-model="forma.ultimo_puesto">
+				<input type="text" placeholder="Empresa" ng-model="forma.empresa">
+				<input type="text" placeholder="Áreas de experiencia" ng-model="forma.areas">
+				<input type="text" placeholder="Rango de sueldo" ng-model="forma.sueldo">
+			</div>
+		</div>
+</div>
+<button class="md-primary md-raised" ngf-select ng-model="forma.file" accept="application/*">Seleccionar archivo</button>
+<p ng-show="forma.file">{{forma.file.name}}
+<br>{{forma.file.size/1024 | number:1}} KB</p>
+<br>
+<button>Enviar</button>
+</form>

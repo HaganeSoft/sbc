@@ -1,1 +1,1 @@
-var app = angular.module('haganeApp', ['ngMaterial']);
+var app = angular.module('haganeApp', ['ngMaterial', 'tabs', 'ngFileUpload']);
