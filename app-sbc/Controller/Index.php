@@ -7,6 +7,7 @@ class Index extends AbstractController{
 	}
 
 	function index() {
+		$this->custom_template = 'sbc';
 	}
 
 	function contacto() {

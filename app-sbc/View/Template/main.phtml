@@ -1,155 +1,65 @@
 <!DOCTYPE html>
 <html ng-app="haganeApp">
 <head>
+	<meta charset="UTF-8">
 	<base href="<?= $this->config['document_root']; ?>">
-	<meta charset="utf-8">
-	<title>UANL</title>
 
-	<!-- STYLES -->
-	<link rel="stylesheet" type="text/css" href="css/reset.css" />
-	<link rel="stylesheet" type="text/css" href="css/slick.css" />
-	<link rel="stylesheet" type="text/css" href="css/slick-theme.css" />
-	<link rel="stylesheet" href="css/webicons.css" media="screen" title="no title" charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<!-- Stylesheets -->
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0-rc1/angular-material.min.css">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" type="text/css" href='https://fonts.googleapis.com/css?family=Roboto'>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 
-	<!-- FONTS -->
-	<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-	<link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,300' rel='stylesheet' type='text/css'>
+	<title>SBC Admin</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<!-- JAVASCRIPTS -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script type="text/javascript" src="js/slick.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
-	<script type="text/javascript" src="js/angular-slick.min.js"></script>
-	<script type="text/javascript" src="js/angular/haganeApp.js"></script>
-	<script type="text/javascript" src="js/angular/controllers.js"></script>
+	<!-- Javascripts -->
+	  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+	<script src="js/haganeApp.js"></script>
+	<script src="js/Config.js"></script>
+	<script src="js/Controllers.js"></script>
 </head>
-<body>
-	<div class="page-wrap">
-		<div class="header">
-			<div class="content">
-				<div class="imagen-logo">
-					<a href="#"><img src="img/menu/logo.png"></a>
-					<div class="greeting">
-						<?php if ($this->auth->isAuth()) : ?>
-						<span class="welcome">welcome</span>
-						<span class="user"><?= $this->user->getUsername(); ?></span>
-						<a href="logout" style="font-size: 8px">(Logout)</a>
-						<?php else: ?>
-						<a href="login">Login</a>
-					<?php endif; ?>
-					
-					</div>
-					<div class="patrocinadores">
-						<a href="http://www.uanl.mx/"><img src="img/menu/uni.jpg"></a>
-						<a href="http://www.conacyt.mx/"><img src="img/menu/conacyt.jpg"></a>
-						<a href="http://newtonfoundation.publishpath.com/"><img src="img/menu/newtfund.jpg"></a>
-						<a href="https://www.britishcouncil.org.mx/"><img src="img/menu/brtcouncil.jpg"></a>
-						<a href="http://www.sheffield.ac.uk/"><img src="img/menu/tuos.jpg"></a>
-					</div>
-					
-				</div>
-				<!--
-				<div class="follow-us">
-					 CAMBIO 1 EN EL DISEñO AL DIA 10 DE DIC
-					<span class="subtitle">Follow US</span>
-					<div class="social svg">
-						<a href="#" class="webicon googleplus">Google+</a>
-						<a href="#" class="webicon twitter">Twitter</a>
-						<a href="#" class="webicon youtube">YouTube</a>
-						<a href="#" class="webicon facebook">Facebook</a>
-						<a href="#" class="webicon linkedin">LinkedIn</a>
-					</div>
-					-->
-					
-					
-					<!--</div> -->
+<body ng-controller="MainController">
+<section layout="row" flex>
+	<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+		<md-toolbar class="md-primary">
+			<h1 class="md-toolbar-tools">SBC</h1>
+		</md-toolbar>
+		<md-content layout-padding ng-controller="LeftCtrl">
+		<md-list>
+				<?php if($this->auth->isAuth()) :?>
+						<md-list-item ng-class="{active : isActive('/Admin/index')}" ng-href="Admin/index">Inicio</md-list-item>
+						<md-divider></md-divider>
+						<md-list-item ng-class="{active : isActive('logout')}" ng-href="logout">Cerrar Sesion</md-list-item>
+				<?php else : ?>
+						<md-list-item ng-class="{active : isActive('login')}" ng-href="login" class="md-primary">Login</md-list-item>
+				<?php endif; ?>
+			</md-list>
+		</md-content>
+	</md-sidenav>
+
+	<section layout="column" flex>
+		<md-toolbar>
+			<div class="md-toolbar-tools">
+				<md-button ng-click="toggleLeft()" hide-gt-lg class="md-icon-button">
+					<md-icon md-font-set="material-icons">menu</md-icon>
+				</md-button>
+				<h2>{{toolbar_title}}</h2>
+				</md-button>
 			</div>
+		</md-toolbar>
+	<md-content flex style="padding: 15px;">
+		<div class="loader">
+			<md-progress-circular md-mode="{{loading}}"></md-progress-circular>
 		</div>
-		<div class="nav">
-			<div class="content">
-				<a href="./" class="subtitulonav">HEAT TREATMENT NETWORK</a>
-				<ul>
-					<li><a href="User/sign_up">Signup</a></li>
-					<li><a href="Downloads">Downloads</a></li>
-					<li><a href="Events">Events</a></li>
-					<li><a href="Index/contacto">Contact</a></li>
-				</ul>
-				<input id="searchbar" type="search" placeholder="Search">
-			</div>
-		</div>
-		<div class="main-view">
-			<?= $this->view; ?>
-		</div>
-		<div class="footers">
-			<div class="footer up">
-				<div class="content">
-					<div class="caja">
-						<span class="subtitulo">Useful Resources</span>
-						<div class="caja-content">
-							<ul>
-								<li>link no.1</li>
-								<li>link no.1</li>
-								<li>link no.1</li>
-								<li>link no.1</li>
-							</ul>
-						</div>
-					</div>
-					<div class="caja">
-						<span class="subtitulo">Contact</span>
-						<div class="caja-content">
-							<table>
-								<tr>
-									<td class="label">address</td><td>lorem ipsum st. MX</td>
-								</tr>
-								<tr>
-									<td class="label">email</td><td>lorem ipsu@uk-mx-htc.com</td>
-								</tr>
-								<tr>
-									<td class="label">phone</td><td>52-1234 972030</td>
-								</tr>
-								<tr>
-									<td class="label">map</td><td>link.to.map</td>
-								</tr>
-							</table>
-						</div>
-					</div>
-					<div class="caja">
-						<span class="subtitulo">Recent Articles</span>
-						<div class="caja-content">
-							<ul class="articles">
-								<li><img src="#" alt="Art.IMG" /><p>Lorem ipsum dolor sit amet, consectetur</p></li>
-								<li><img src="#" alt="Art.IMG" /><p>Lorem ipsum dolor sit amet, consectetur</p></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="footer down">
-				<div class="content">
-					<ul>
-						<li><a href="User/sign_up">Signup</a></li>
-						<li><a href="Downloads">Downloads</a></li>
-						<li><a href="Events">Events</a></li>
-						<li><a href="Index/contacto">Contact</a></li>
-					</ul>
-					<div class="copyright">
-						<span class="copy">HTN Copyright 2015</span>
-						<span class="design">designed by BLACKMAMBA </span>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-<script type="text/javascript">
-	$('.fade').slick({
-	  dots: true,
-	  infinite: true,
-	  speed: 500,
-	  fade: true,
-	  cssEase: 'linear'
-	});
-	
-</script>
+		<?= $this->view; ?>
+	</md-content>
+	</section>
+</section>
 </body>
 </html>
