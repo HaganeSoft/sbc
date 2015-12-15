@@ -1,0 +1,18 @@
+<?php if ($this->auth->isAuth()) : ?>
+	<a href="User/logout">Logout</a>
+ya etsas logueado tututruur   shhhoohh
+<?php else: ?>
+<form action="User/auth" method="post">
+	<md-input-container>
+		<md-icon md-font-set="material-icons">account_circle</md-icon>
+		<input name="user" type="text" placeholder="User" ng-required="true">
+	</md-input-container>
+	<md-input-container>
+		<md-icon md-font-set="material-icons">lock</md-icon>
+		<input name="password" type="password" placeholder="Password" ng-required="true">
+	</md-input-container>
+	<md-input-container >
+		<md-button type="submit">Entrar</md-button>
+	</md-input-container>
+</form>
+<?php endif; ?>

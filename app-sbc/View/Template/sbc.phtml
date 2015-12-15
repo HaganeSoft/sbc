@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="haganeApp">
+<head>
+	<meta charset="UTF-8">
+	<base href="<?= $this->config['document_root']; ?>">
+
+	<!-- Stylesheets -->
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0-rc1/angular-material.min.css">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" type="text/css" href='https://fonts.googleapis.com/css?family=Roboto'>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+
+	<title>SBC Admin</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Javascripts -->
+	  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+	  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+	  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+	<script src="js/haganeApp.js"></script>
+	<script src="js/Config.js"></script>
+	<script src="js/Controllers.js"></script>
+</head>
+<body ng-controller="MainController">
+<?= $this->view; ?>
+</body>
+</html>
