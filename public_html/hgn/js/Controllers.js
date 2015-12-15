@@ -10,7 +10,7 @@ function DialogController($scope, $mdDialog) {
   };
 }
 
-app.controller('MainController', function ($scope, $timeout, $mdSidenav, $log, $location) {
+app.controller('MainController', function ($scope, $timeout, $mdSidenav, $log, $location, Upload) {
 	$scope.toggleLeft = buildDelayedToggler('left');
 	$scope.toggleRight = buildToggler('right');
 
@@ -77,6 +77,22 @@ app.controller('MainController', function ($scope, $timeout, $mdSidenav, $log, $
 			});
 		}
 	}
+////////////////////////////////////////////////////////////////////
+	$scope.forma = {};
+	$scope.upload = function () {
+		Upload.upload({
+			url: 'Index/uploadForm',
+			method: 'POST',
+            fields: $scope.forma,
+			file: $scope.forma.file
+		})
+		.then(function (response) {
+			if (response.data.success == 'true') {
+				$scope.result = response.data;
+			}
+		});
+	}
+
 })
 
 .controller('LeftCtrl', ['$location', function ($scope, $timeout, $mdSidenav, $log, $location) {
