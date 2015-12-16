@@ -15,11 +15,11 @@ class Admin extends AbstractController{
 	function index() {
 	}
 
-	function ajaxGetCurriculums() {
+	function ajaxGetPersonas() {
 		$this->sendJson = true;
 		$this->print_template = false;
 		$this->userManager = new \Hagane\Model\UserManagement($this->auth, $this->db);
-		echo json_encode($this->userManager->getEmpresas());
+		echo json_encode($this->userManager->getPersonas());
 	}
 }
 

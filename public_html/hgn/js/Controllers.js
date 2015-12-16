@@ -125,15 +125,14 @@ app.controller('MainController', function ($scope, $timeout, $mdSidenav, $log, $
 })
 .controller('AdminController', function ($scope, $timeout, $mdSidenav, $log, $http, $mdDialog, $mdToast) {
 	$scope.$parent.loading = 'indeterminate';
-	$scope.usuariosAdmin = [];
+	$scope.personas = [];
 
-	$http.post('Admin/ajaxGetUsuarioAdmin', {})
+	$http.post('Admin/ajaxGetPersonas', {})
 	.then(function(response) {
-		$scope.usuariosAdmin = response.data;
+		$scope.personas = response.data;
 	})
 	.finally(function() {
 		$scope.$parent.loading = null;
 	});
-
 });
 

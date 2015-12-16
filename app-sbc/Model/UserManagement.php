@@ -16,19 +16,11 @@ class UserManagement {
 
 	}
 
-	function getUsers() {
-		$users = $this->db->query('SELECT u.user, u.user_type FROM User as u');
+	function getPersonas() {
+		$users = $this->db->query('SELECT * FROM Persona');
 
 		return $users;
 	}
-
-	function setResponsable($data = array()) {
-		$lastid = $this->db->insert('INSERT INTO User SET user=:user, password=:password, user_type=:user_type ', $data);
-
-		$data['idUser'] = $lastid;
-		$this->db->insert('INSERT INTO Responsable SET nombre=:nombre, apellido_paterno=:apellido_paterno, apellido_materno=:apellido_materno, idCliente=:idCliente, idUser=:idUser ', $data);
-	}
-
 }
 
 ?>

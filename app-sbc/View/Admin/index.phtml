@@ -1,16 +1,30 @@
 <section id="pagecontent" layout="row" flex ng-controller="AdminController">
-	<h3>Panel Administrador</h3>
-	<md-card>
-		<img ng-src="{{imagePath}}" class="md-card-image">
-		<md-card-content>
-			<h2 class="md-title">Admin</h2>
-			<p>
-				Admin
-			</p>
-		</md-card-content>
-		<div class="md-actions" layout="row" layout-align="end center">
-			<md-button>Action 1</md-button>
-			<md-button>Action 2</md-button>
-		</div>
-	</md-card>
+<style type="text/css">
+	.tajetaConfig {
+		min-width: 600px;
+	}
+</style>
+<md-card class="tajetaConfig">
+	<img ng-src="{{imagePath}}" class="md-card-image">
+	<md-card-content>
+	<h2 class="md-title">Personas</h2>
+		<md-content class="md-padding">
+		<md-input-container>
+			<label>Buscar Personas </label>
+			<input ng-model="searchPersonas" />
+		</md-input-container>
+			<md-list>
+				<md-list-item class="md-3-line" ng-repeat="persona in personas | filter:searchPersonas">
+					<div class="md-list-item-text" layout="column">
+						<h3>{{ persona.nombre }} {{ persona.apellidos }}</h3>
+						<h4>{{ persona.empresa }}</h4>
+					</div>
+					<md-button class="md-secondary" ng-click="modPymeDialog($event, $index)">Modificar</md-button>
+					<md-divider ></md-divider>
+				</md-list-item>
+			</md-list>
+		</md-content>
+	</md-card-content>
+</md-card>
+</div>
 </section>
