@@ -87,8 +87,18 @@ app.controller('MainController', function ($scope, $timeout, $mdSidenav, $log, $
 			file: $scope.forma.file
 		})
 		.then(function (response) {
-			if (response.data.success == 'true') {
-				$scope.result = response.data;
+			if (response.data.success) {
+				$scope.color = '#00ff00';
+				$scope.font = '#000';
+				$scope.message = response.data.message;
+			} else {
+				$scope.color = '#ff0000';
+				$scope.font = '#fff';
+				if (response.data.message) {
+					$scope.message = response.data.message;
+				} else {
+					$scope.message = 'Error al guardar, favor de contactarse directamente.';
+				}
 			}
 		});
 	}

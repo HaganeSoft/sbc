@@ -13,6 +13,13 @@ body {
 	height: 200px;
 	background-color: #fff;
 }
+.cabeza2 {
+	height: 64px;
+	background-color: #343334;
+	max-width: 960px;
+	margin: 0 auto;
+	position: relative;
+}
 .fondo {
 	padding-top: 200px;
 	background-color: #343334;
@@ -21,6 +28,7 @@ body {
 	max-width: 960px;
 	margin: 0 auto;
 	min-height: 420px;
+	position: relative;
 }
 
 .tabbable input {
@@ -47,16 +55,66 @@ select.mitad {
 form {
 	margin: 0;
 }
-</style>
+.subtitulo {
+	color: #fff;
+	padding-bottom: 25px;
+	border-bottom: 2px solid #873588;
+	margin-bottom: 25px;
+	width: 300px;
+}
+.caja {
+	border-bottom: 5px solid #873588;
+	margin-bottom: 25px;
+	width: 300px;
+	height: 210px;
+	position: absolute;
+	top: -300px;
+	left: 50px;
+	background-color: #c2c2c2;
+	opacity: 0.9;
+}
 
+nav ul {
+	list-style: none;
+}
+
+nav li {
+	float: left;
+	background-color: #343334;
+}
+.innerMenu10 {
+	width: 680px;
+}
+</style>
+<div class="cabeza2">
+<div class='dataTypeMenu menu left horizontal innerMenu10 ' data-type='Menu' data-name='Top Menu' id='innerMenu10'><nav>			<ul>
+		<li id='mainMenuElement0innerMenu10' class='innerMenu10_category image_wa'> <A href="index.html" title="INICIO" class="category">INICIO</A></li>
+		<li id='mainMenuElement1innerMenu10' class='innerMenu10_category image_wa'> <A href="about.html" title="SERVICIOS" class="category">SERVICIOS</A></li>
+		<li id='mainMenuElement2innerMenu10' class='innerMenu10_category image_wa'> <A href="gallery.html" title="CASOS DE ÉXITO" class="category">CASOS DE ÉXITO</A></li>
+
+		<li id='mainMenuElement2innerMenu10' class='innerMenu10_categoryDown image_wa'> <A href="/hgn/" title="SUBE TU CURRÍCULUM" class="category">CURRÍCULUM</A></li>
+
+
+		<li id='mainMenuElement3innerMenu10' class='innerMenu10_category image_wa'> <A href="BIBLIOTECA.html" title="BIBLIOTECA" class="category">BIBLIOTECA</A></li>
+		<li id='mainMenuElement4innerMenu10' class='innerMenu10_category image_wa'> <A href="Page1.html" title="CONTACTO" class="category">CONTACTO</A></li>
+	</ul>
+</nav></div>
+</div>
 <div class="cabeza">
-c
+
 </div>
 <div class="fondo">
 	<div class="contenido">
+	<div class="caja">
+				<p style="text-align: center;margin-top: 25px;">INGRESA TUS DATOS Y SE PARTE DE NUESTRA BOLSA DE TRABAJO</p>
+				<p style="text-align: center; position: absolute; bottom: -40px; color: #fff; width: 300px;">COMPETITIVIDAD EN CAPITAL HUMANO</p>
+	</div>
 	<form>
 		<div ng-tabs class="tabbable">
 			<ul class="nav nav-pills nav-stacked" style="width: 100px;  float:left; margin-left: 50px; ">
+				<div class="subtitulo">
+				INFORMACIÓN
+				</div>
 				<li ng-tab-head="active">
 					<a href="#" ng-click="$event.preventDefault()">Personal</a>
 				</li>
@@ -67,7 +125,7 @@ c
 					<a href="#" ng-click="$event.preventDefault()">Trayectoria</a>
 				</li>
 			</ul>
-				<div class="tab-content" style="width: 500px; float:right;">
+				<div class="tab-content" style="width: 500px; float:right; margin-top: 45px;">
 					<div ng-tab-body="" class="tab-pane">
 						<input type="text" placeholder="Nombre" ng-model="forma.nombre" required>
 						<input type="text" placeholder="Apellido" ng-model="forma.apellidos" required>
@@ -255,11 +313,16 @@ c
 					</div>
 				</div>
 				<div style="clear: both; float: right;">
-				<button class="md-primary md-raised" ngf-select ng-model="forma.file" accept="application/*">Seleccionar archivo</button>
+				<p style="color: #fff; background-color: {{color}};color: {{font}};text-align: center; width: 510px;" ng-show="message">
+					{{message}}
+				</p>
+				<br>
+				</div>
+				<div style="clear: both; float: right;">
+				<button style="clear: both; width: 300px; float: right;" class="md-primary md-raised" ngf-select ng-model="forma.file" accept="application/*">Seleccionar Curriculum</button>
 				<p style="color: #fff;" ng-show="forma.file">{{forma.file.name}}
 				<br>{{forma.file.size/1024 | number:1}} KB</p>
-				<br>
-				<button ng-click="upload()">Enviar</button>
+				<button style="clear: both; float: right; margin-top: 15px;" ng-click="upload()">Enviar</button>
 				</div>
 			</div>
 		</form>

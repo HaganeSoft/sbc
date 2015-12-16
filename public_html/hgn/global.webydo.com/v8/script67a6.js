@@ -25,409 +25,6 @@ function toInt(value, defaultValue) {
 
     return returnValue;
 }
-$(window).resize(function () {
-    removeZoomForNotMobileDevices();
-    var parallaxedElements = $('[data-parallax]');
-    parallaxedElements.removeClass('show-parallax')
-    updateMainPanelWidth();
-
-    updateVideoWidth(true);
-    updateVideoBackground(true);
-    
-    handleresizeDefaultGallery();
-    parallaxedElements.addClass('show-parallax')
-    //SetBackgroundAttachment();
-
-    /* Fallback in for beacking point */
-    if ($('.mobile-menu')) {
-        if ($('.mobile-toggle').css('display') == 'none') $('.mobile-menu').closest('.mobile').hide();
-    }
-});
-
-
-$(window).scroll(function () {
-    //fixBackgroundPositionForAttachment();
-});
-
-function handleresizeDefaultGallery() {
-
-    var enumFittingType = {
-        OriginalSize: 0,
-        FitToWidth: 1,
-        FitToHeight: 2,
-        Stretch: 3,
-        Pattern: 4,
-        None: 5,
-        RepeatX: 6,
-        RepeatY: 7
-    };
-    var enumImagePositionType = {
-        TopLeft: 0,
-        TopRight: 1,
-        BottomRight: 2,
-        BottomLeft: 3,
-        Center: 4,
-        None: 5,
-        TopCenter: 6,
-        BottomCenter: 7,
-        Right: 8,
-        Left: 9
-    };
-
-    $('.DefaultGallery').each(function (index) {
-        var elm = this.children[0];
-
-        var properites = {
-            'at': 'slide',
-            //at - animationType
-            'iw': 0,
-            //iw - itemWidth
-            'im': 0,
-            //im - itemMargin
-            'ft': 3,
-            //ft - fittingType
-            'pt': 4 //pt - positionType
-        };
-
-        properties = GetParamsFromClassName(this, properites);
-
-
-        var $img = $(elm).find('ul.slides li').children('img');
-
-        // remove pattern
-        $img.css("display", "inline");
-        $img.parent().css("background-repeat", "no-repeat").css("background-image", "none");
-
-        var galleryWidth = elm.clientWidth;
-        var galleryHeight = elm.clientHeight;
-
-        $img.each(function (i, img) {
-            var originalWidth = this.getAttribute("data-initialWidth");
-            var originalHeight = this.getAttribute("data-initialHeight");
-            var ft = properites.ft * 1;
-            switch (ft) {
-                case enumFittingType.OriginalSize:
-                    $(this).css("width", originalWidth + 'px').css("height", originalHeight + 'px');
-                    break;
-                case enumFittingType.FitToWidth:
-                    var ratio = originalHeight / originalWidth;
-                    var imageWidth = galleryWidth;
-                    var imageHeight = imageWidth * ratio;
-                    $(this).css("width", imageWidth + 'px').css("height", imageHeight + 'px');
-                    break;
-                case enumFittingType.FitToHeight:
-                    var ratio = originalHeight / originalWidth;
-                    var imageHeight = galleryHeight;
-                    var imageWidth = imageHeight / ratio;
-                    $(this).css("width", imageWidth + 'px').css("height", imageHeight + 'px');
-                    break;
-                case enumFittingType.Stretch:
-                    var imageHeight = galleryHeight;
-                    var imageWidth = galleryWidth;
-                    $(this).css("width", imageWidth + 'px').css("height", imageHeight + 'px');
-                    break;
-                case enumFittingType.Pattern:
-                    this.style.display = "none";
-                    this.parentNode.style.width = galleryWidth + 'px';
-                    this.parentNode.style.height = galleryHeight + 'px';
-                    this.parentNode.style.backgroundRepeat = "repeat";
-                    this.parentNode.style.backgroundImage = "url(" + this.src + ")";
-                    break;
-            }
-            var pt = properites.pt * 1;
-            switch (pt) {
-                case enumImagePositionType.TopLeft:
-                    $(this).css("margin-left", '0px').css("margin-top", '0px');
-                    break;
-                case enumImagePositionType.TopRight:
-                    $(this).css("margin-left", (galleryWidth - toInt($(this).css("width"))) + 'px').css("margin-top", '0px');
-                    break;
-                case enumImagePositionType.BottomRight:
-                    $(this).css("margin-left", (galleryWidth - toInt($(this).css("width"))) + 'px').css("margin-top", (galleryHeight - toInt($(this).css("height"))) + 'px');
-                    break;
-                case enumImagePositionType.BottomLeft:
-                    $(this).css("margin-left", '0px').css("margin-top", (galleryHeight - toInt($(this).css("height"))) + 'px');
-                    break;
-                case enumImagePositionType.Center:
-                    $(this).css("margin-left", (galleryWidth - toInt($(this).css("width"))) / 2 + 'px').css("margin-top", (galleryHeight - toInt($(this).css("height"))) / 2 + 'px');
-                    break;
-            }
-
-        });
-    });
-}
-
-function removeZoomForNotMobileDevices() {
-    var isMobile = false;
-    if (navigator.userAgent.match(/iPad/i)) {
-        isMobile = true;
-    }
-
-    if (navigator.userAgent.match(/iPod/i)) {
-        isMobile = true;
-    }
-
-    if (navigator.userAgent.match(/iPhone/i)) {
-        isMobile = true;
-    }
-
-    if (navigator.userAgent.match(/Android/i)) {
-        isMobile = true;
-    }
-
-    if (navigator.userAgent.match(/BlackBerry/i)) {
-        isMobile = true;
-    }
-
-    if (navigator.userAgent.match(/Windows Phone/i)) {
-        isMobile = true;
-    }
-
-    if (navigator.userAgent.match(/Opera Mobi/i)) {
-        isMobile = true;
-    }
-
-    if (navigator.userAgent.match(/webOS/i)) {
-        isMobile = true;
-    }
-
-    if (isMobile == false) {
-        try {
-            document.getElementsByTagName("html")[0].style.zoom = 1;
-            if (navigator.userAgent.match(/firefox/i))
-                document.getElementsByTagName("html")[0].setAttribute("style", "-moz-transform:none");
-        } catch (e) { }
-    }
-}
-function LeftFix() {
-    prevMainContentOffsetLeft = 0;
-    var mainContent = $('.dataTypeMainContent')[0];
-    if (!mainContent) {
-        mainContent = $('[data-type="MainContent"]')[0];
-}
-    var fixedElements = $('*').filter(function () {
-        return $(this).css('position') == "fixed";
-        });
-    fixedElements.each(function () {
-        if (!$(this).hasClass('fit_to_bg_new')) {
-            $($(this)[0]).css('left', '');
-            //$(this)[0].style.left = $($(this)[0]).css('left').replace('px','') - mainContent.offsetLeft + 'px';
-            //$(this)[0].style.left = $($(this)[0]).css('left').replace('px','') + 'px';
-            }
-            });
-            }
-
-function AddMatchMediaListenersForMediaQuery() {
-    /// <summary>Run code whenever window is resized and a media query point is CROSSED (e.g. phone rotate). The code may run more than once. </summary>
-    if (window.matchMedia) {
-        var mediaQueries = ['screen and (max-width:959px)',
-                       'screen and (max-width:767px)',
-                       'screen and (max-width:479px)'];
-        mediaQueries.forEach(function (query) {
-            window.matchMedia(query).addListener(function (mql) {
-                LeftFix();
-                handleMainContentHeightAccordingToChildrenBottom();
-                SetCurrentBreakPointBodyClass();
-                SetDefaultRepeaterPage();
-            });
-        });
-    }
-}
-
-function setBreakPoint() {
-    var viewport = document.querySelector("meta[name=viewport]");
-    if (!viewport) return;
-    viewport.setAttribute('content', 'width=device-width, initial-scale=1');
-
-    var width = document.body.scrollWidth;
-    var startsfrom_val = null;
-    var bp_val = null;
-    var pc_val = null;
-
-    var $bp_data = $('.bp_data');
-
-    for (i = 0; i < $bp_data.length; i++) {
-        var bp_data = $bp_data[i];
-        var startsfrom = bp_data.getAttribute("data-startsfrom");
-        var value = bp_data.getAttribute("data-value");
-        var bp = bp_data.getAttribute("data-bp");
-        if (startsfrom > width && !bp_val) {
-            startsfrom_val = startsfrom;
-            bp_val = value;
-        }
-        if (bp == "pc" && !bp_val) {
-            bp_val = value;
-        }
-
-    }
-    if (bp_val > width) {
-        initial = width / bp_val;
-        viewport.setAttribute('content', 'width=device-width, initial-scale=' + initial);
-    }
-}
-
-function handleMainContentHeightAccordingToChildrenBottom() {
-/// <summary>Fixes "MainContent" height in the page, in case it has a child element that is lower than it.</summary>
-/* (Gilad, 22.7.15) This situation happens "by design" in at least two scenarios:
-
- a) An element which is lower than the ip's MainContent was moved to the master page using "repeat on all pages".
- b) An element which is lower than the breakpoint's MainContent was inserted in a higher breakpoint.
-
- In both cases, the height of MainContent is NOT updated in the JSON. Instead, there are different "fix functions" that enlarge the height:
-
- * In the studio, there's some function that adds "min-height" to the MainContent ONLY WHEN IT'S RENDERED.
- * In the publisher, there "FixMainContentCenterHeight" function that is supposed to fix problem a only, but the fix from there doesn't get to the site.
- * This function here in the script that fixes both problems - a and b.
- */
-    var $main = $('main');
-    var $mainContent = $main.find('[data-type="MainContent"]');
-    var mainContent = $mainContent[0];
-    mainContent.style.height = ""; //clear previous calculation - the height will be taken from the CSS (that came from the publisher). Important when resizing to lower BP.
-    var mainContentBottom = mainContent.clientHeight + $main[0].offsetTop;
-    $mainContent.find('[data-type]:visible').each(function () {
-        //Some elements have "block_important" class - they might be actually hidden in the css, but are temporarily shown (later this class is removed).  See also other comments about this here in script.js.
-        //To solve this bug, maybe remove "block_important" class, check if element is display:none, ignore it if it is, and then put "block_important" back. 
-            var elementBottom = this.clientHeight + this.offsetTop;
-            mainContentBottom = Math.max(elementBottom, mainContentBottom);
-    });
-    mainContent.style.height = mainContentBottom - $main[0].offsetTop + 'px';
-}
-
-function SetCurrentBreakPointBodyClass() {
-    var width = document.body.scrollWidth;
-    var bp_val = null;
-    var data_br = "pc";
-    var $bp_data = $('.bp_data');
-
-    for (i = 0; i < $bp_data.length; i++) {
-        var bp_data = $bp_data[i];
-        var startsfrom = bp_data.getAttribute("data-startsfrom");
-        var value = bp_data.getAttribute("data-value");
-        var bp = bp_data.getAttribute("data-bp");
-        if (startsfrom > width && !bp_val) {
-            bp_val = value;
-            data_br = bp;
-        }
-        if (bp == "pc" && !bp_val) {
-            bp_val = value;
-            data_br = bp;
-        }
-    }
-    document.body.setAttribute('class', data_br + '_view');
-}
-
-$(document).ready(function () {
-    SetCurrentBreakPointBodyClass();
-    removeZoomForNotMobileDevices();
-    AddMatchMediaListenersForMediaQuery();
-    var parallaxedElements = $('[data-parallax]').filter(function () {
-        return $(this).is(':visible') == true;
-    });
-    // causing gap in maincontent customer bugs v7
-    handleMainContentHeightAccordingToChildrenBottom();
-    updateMainPanelWidth();
-    fixHideVimeoControl();
-    updateVideoBackground(true);
-    updateVideoWidth(true);
-    updateVideoHeight();
-
-    if (parallaxedElements.length > 0) {
-        skr = skrollr.init({
-            forceHeight: false
-        });
-    }
-
-    handleImageTextCaption();
-    handleDefaultGallery();
-    handleMatrixGallery();
-
-    //fix text caption in gallery that includes 'contenteditable'
-    $('div[data-reference="body"]').each(function () {
-        $(this).removeAttr("contenteditable");
-    });
-
-    var vph = $(window).height();
-    if ($(document).height() > vph) {
-        $('html').css('height', 'auto');
-    }
-
-    $('.width_height_max').css('width', '100%', 'height', '100%');
-
-    $(".popup_anchor").closest(".image_text_caption").find(".inner_text_con").mouseover(function (event) {
-        $(this).css("cursor", "pointer");
-    });
-
-    //fix menu to fire onmouseover for IE
-    if ($.browser.msie || isIE11) {
-        FixTextRtlForIE();
-        $('ul.image_wa').each(function () {
-            $(this).css('width', $(this).find('li').first().css('width'));
-        });
-    };
-
-    $(".block_important").removeClass("block_important"); //this class is added in the publisher, we think it's to avoid problems with flex-slider that crashes on
-        //"display: none" elements. Maybe this line can be moved earlier. See also other comments about this here in script.js.
-
-    $("[data-formmode='MessageMode']").addClass("none_important");
-    parallaxedElements.addClass('show-parallax');
-
-    
-    //SetBackgroundAttachment();
-
-    var imageGalleryObjects = document.getElementsByClassName("galleryTextCaption");
-    for (var i = 0; i < imageGalleryObjects.length; i++) {
-        if (imageGalleryObjects[i] && imageGalleryObjects[i].children[0])
-            imageGalleryObjects[i].style.height = imageGalleryObjects[i].children[0].offsetHeight + "px";
-    }
-
-
-    /* Mobile Menu Binds */
-    $('.mobile-toggle').click(mobileMenuToggle);
-    $('.mobile button').click(mobileMenuExpand);
-
-    /* Hide the mobile menu when someone click on link*/
-    $('.mobile a').click(function () {
-        $(this).closest('.mobile').hide();
-    });
-});
-
-
-
-if (!window.getComputedStyle) {
-    window.getComputedStyle = function (el, pseudo) {
-        this.el = el;
-        this.getPropertyValue = function (prop) {
-            var re = /(\-([a-z]){1})/g;
-            if (prop == 'float') prop = 'styleFloat';
-            if (re.test(prop)) {
-                prop = prop.replace(re, function () {
-                    return arguments[2].toUpperCase();
-                });
-            }
-            return el.currentStyle[prop] ? el.currentStyle[prop] : null;
-        }
-        return this;
-    }
-}
-
-function getStyle(elm, prop) {
-    if (isIE && isWin && !isOpera) {
-        return ((window.getComputedStyle(elm, null).getPropertyValue(prop) != "") ? window.getComputedStyle(elm, null).getPropertyValue(prop) : window.getComputedStyle(elm, null)[prop])
-    } else {
-        return window.getComputedStyle(elm, null)[prop]
-    }
-}
-var prevMainContentOffsetLeft = 0;
-$(window).keydown(function (event) {
-    event = event || window.event;
-    var keycode = event.charCode || event.keyCode;
-    if (keycode === 27) {
-        var imagepopup_overlay = document.getElementById("imagepopup_overlay");
-        if (imagepopup_overlay) {
-            imagepopup_overlay.parentNode.removeChild(imagepopup_overlay);
-        }
-    }
-});
 
 
 //------------------------------------------------------------
@@ -504,9 +101,9 @@ function handleImageEvent(ev, isImageOver) {
             clearTimeout(captionAnimationTimeout);
         }
         var classForAnimating = "animating", classForFinishedAnimation = "finishedEntranceAnimation";
-		if (isImageOver || $elm.hasClass(classForAnimating) || $elm.hasClass(classForFinishedAnimation)) { 
+		if (isImageOver || $elm.hasClass(classForAnimating) || $elm.hasClass(classForFinishedAnimation)) {
             //don't do anything when mousing out of element with the caption outside
-        
+
             if ($elm.hasClass(classForAnimating)) { //is(':animated') didn't work well enough.
 		        $elm.stop().removeClass(classForAnimating); //Fixed the annoying bug that was around for 2.5 years...
 		        captionAnimationDelay = 0; //We were in the middle of an animation, so don't use delay for continuing it
@@ -912,11 +509,11 @@ function ControlVersion() {
 
             // installed player is some revision of 6.0
             // GetVariable("$version") crashes for versions 6.0.22 through 6.0.29,
-            // so we have to be careful. 
+            // so we have to be careful.
             // default to the first public version
             version = "WIN 6,0,21,0";
 
-            // throws if AllowScripAccess does not exist (introduced in 6.0r47)		
+            // throws if AllowScripAccess does not exist (introduced in 6.0r47)
             axo.AllowScriptAccess = "always";
 
             // safe to call for 6.0r47 or greater
@@ -1634,9 +1231,9 @@ function updateMainPanelWidth() {
     ///<summary>Handles special calculations for elements - "fit to width", parallax etc. Happens every resize.</summary>
     var body_width = document.body.scrollWidth;
     var body_height = (document.body.scrollHeight > document.body.clientHeight) ? document.body.scrollHeight : document.body.clientHeight;
-    
+
     var fitToBgLegacy = $('.fit_to_bg'), fitToBg = $('.fit_to_bg_new');
-  
+
     var style = document.getElementsByTagName('style')[0];
     if (!style) {
         style = document.createElement('style');
@@ -1655,7 +1252,7 @@ function updateMainPanelWidth() {
 
 
     fitToBgLegacy.removeAttr("style");
-   
+
     var mainContent = $('.dataTypeMainContent')[0] || $('[data-type="MainContent"]')[0];
 
     fitToBg.each(function () {
@@ -1677,7 +1274,7 @@ function updateMainPanelWidth() {
             this.style.left = '0';
         }
     });
-  
+
 
     var fixedElements = $('*').filter(function () {
         return $(this).css('position') == "fixed"
@@ -1988,7 +1585,7 @@ function handleMatrixGallery() {
         var properites = {
             'i': '0',
             //i - index
-            'nt': 4 //nt - NumberThumbs           
+            'nt': 4 //nt - NumberThumbs
         };
 
         properties = GetParamsFromClassName(this, properites);
@@ -2227,7 +1824,7 @@ function fixMobilePixelPerfect(element) {
 }
 
 /**
- * Called when mobile menu toggle been tapped. 
+ * Called when mobile menu toggle been tapped.
  * @param {DOM#Event} event
  */
 function mobileMenuToggle(event) {
@@ -2253,8 +1850,8 @@ function mobileMenuToggle(event) {
 }
 
 /**
- * This method will open and close the submenu 
- * that related to current button 
+ * This method will open and close the submenu
+ * that related to current button
  * @param {DOM#Event} event
  */
 function mobileMenuExpand(event) {
