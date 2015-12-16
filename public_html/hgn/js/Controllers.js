@@ -134,5 +134,27 @@ app.controller('MainController', function ($scope, $timeout, $mdSidenav, $log, $
 	.finally(function() {
 		$scope.$parent.loading = null;
 	});
+
+	$scope.areas =['0','Administración', 'Arquitectura', 'Construcción', 'Contabilidad', 'Compras', 'Crédito y Cobranza', 'Derecho', 'Dirección General', 'Diseño Industrial', 'Diseño Gráfico', 'Diseño Web', 'Distribución', 'Educación', 'Gastronomía', 'Gerencia General', 'Ingeniería', 'Investigación y Desarrollo', 'Logística', 'Mantenimiento', 'Medicina', 'Mercadotecnia', 'Operación', 'Producción', 'Publicidad', 'Recepción y Apoyo Administrativo', 'Recursos Humanos', 'Relaciones Públicas', 'Salud y Belleza', 'Servicio al Cliente', 'Sistemas Computacionales (Hardware)', 'Tecnologías de Información (Software)', 'Transportación', 'Turismo', 'Ventas'];
+
+	$scope.tiempo = ['', 'Menos de 1 año', 'De 1 a 3 años', 'De 3 a 5 años', 'De 5 a 10 años', 'Más de 10 años'];
+
+	$scope.sueldo = ['', '$5,000.00 - $10,000.00', '$10,000.00 - $15,000.00', '$15,000.00 - $20,000.00', '$20,000.00 - $30,000.00', '$30,000.00 - $40,000.00', '$40,000.00 - $50,000.00', '$50,000.00 - $70,000.00', '$70,000.00 - $90,000.00', '$90,00.00 - $120,000.00', '$120,000.00 - $150,000.00'];
+
+	$scope.ingles = ['', 'Nulo (No tiene conocimientos del idioma.)', 'Principiante (Entiende textos y algunas expresiones al escuchar. No lo habla.)', 'Intermedio (Puede leerlo y escribirlo. Solo habla y entiende expresiones básicas.)', 'Avanzado (Puede leerlo y escribirlo. Capaz de establecer conversaciones.)', 'Nativo (Domina completamente el idioma.)'];
+
+
+	$scope.personaDialog = function(ev, index) {
+		$scope.persona = $scope.personas[index];
+		$mdDialog.show({
+			controller: DialogController,
+			templateUrl: 'index.php?controller=Admin&action=personaDialog',
+			parent: angular.element(document.body),
+			targetEvent: ev,
+			clickOutsideToClose:true,
+			scope: $scope,
+			preserveScope: true
+		});
+	};
 });
 

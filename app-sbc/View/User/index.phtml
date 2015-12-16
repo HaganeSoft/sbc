@@ -1,7 +1,7 @@
-<?php if ($this->auth->isAuth()) : ?>
-	<a href="User/logout">Logout</a>
-ya etsas logueado tututruur   shhhoohh
-<?php else: ?>
+<?php if ($this->auth->isAuth()) :
+	$this->redirect('Admin/index');
+	die();
+else: ?>
 <form action="User/auth" method="post">
 	<md-input-container>
 		<md-icon md-font-set="material-icons">account_circle</md-icon>

@@ -15,6 +15,10 @@ class Admin extends AbstractController{
 	function index() {
 	}
 
+	function personaDialog() {
+		$this->print_template = false;
+	}
+
 	function ajaxGetPersonas() {
 		$this->sendJson = true;
 		$this->print_template = false;

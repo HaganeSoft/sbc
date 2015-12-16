@@ -1,0 +1,55 @@
+<md-dialog aria-label="Información de la Persona"  ng-cloak>
+<form>
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<h2>Currículum</h2>
+			<span flex></span>
+			<md-button class="md-icon-button" ng-click="cancel()">
+				<md-icon aria-label="Close dialog">close</md-icon>
+			</md-button>
+		</div>
+	</md-toolbar>
+	<md-dialog-content style="min-width:600px;max-height:810px;padding: 10px;">
+	<style>
+		.cell {
+			float: left;
+			margin: 3px 10px;
+		}
+
+		.clear {
+			clear: left;
+		}
+	</style>
+		<span ng-show"persona.nombre" class="cell"><strong>Nombre:</strong> {{persona.nombre}}</span>
+		<span ng-show"persona.apellidos" class="cell"><strong>Apellidos:</strong> {{persona.apellidos}}</span>
+		<span ng-show"persona.edad" class="cell clear"><strong>Edad:</strong> {{persona.edad}}</span>
+		<span ng-show"persona.sexo" class="cell"><strong>Sexo:</strong> {{persona.sexo}}</span>
+		<span ng-show"persona.residencia" class="cell clear"><strong>Residencia:</strong> {{persona.residencia}}</span>
+		<span ng-show"persona.telefono" class="cell"><strong>Teléfono:</strong> {{persona.telefono}}</span>
+		<span ng-show"persona.email" class="cell"><strong>Email:</strong> {{persona.email}}</span>
+		<span ng-show"persona.carrera" class="cell clear"><strong>Carrera:</strong> {{persona.carrera}}</span>
+		<span ng-show"persona.inst_carrera" class="cell clear"><strong>Institución carrera:</strong> {{persona.inst_carrera}}</span>
+		<span ng-show"persona.maestria" class="cell clear"><strong>Maestría:</strong> {{persona.maestria}}</span>
+		<span ng-show"persona.inst_maestria" class="cell clear"><strong>Institución maestria:</strong> {{persona.inst_maestria}}</span>
+		<span ng-show"persona.ingles" class="cell clear"><strong>Inglés:</strong> {{ingles[persona.ingles]}}</span>
+		<span ng-show"persona.otros_idiomas" class="cell clear"><strong>Otros idiomas:</strong> {{persona.otros_idiomas}}</span>
+		<span ng-show"persona.ultimo_puesto" class="cell clear"><strong>Último puesto:</strong> {{persona.ultimo_puesto}}</span>
+		<span ng-show"persona.empresa" class="cell"><strong>Empresa:</strong> {{persona.empresa}}</span>
+		<span ng-show"persona.rango_sueldo" class="cell "><strong>Rango sueldo:</strong> {{sueldp[persona.rango_sueldo]}}</span>
+		<span ng-show"persona.area1" class="cell clear "><strong>Área 1:</strong> {{areas[persona.area1]}}</span>
+		<span ng-show"persona.tiempo1" class="cell"><strong>Tiempo:</strong> {{tiempo[persona.tiempo1]}}</span>
+		<span ng-show"persona.area2" class="cell clear"><strong>Área 2:</strong> {{areas[persona.area2]}}</span>
+		<span ng-show"persona.tiempo2" class="cell"><strong>Tiempo:</strong> {{tiempo[persona.tiempo2]}}</span>
+		<span ng-show"persona.area3" class="cell clear"><strong>Área 3:</strong> {{areas[persona.area3]}}</span>
+		<span ng-show"persona.tiempo3" class="cell"><strong>Tiempo:</strong> {{tiempo[persona.tiempo3]}}</span>
+		<span ng-show"persona.file_path" class="cell clear"><strong>Currículum:</strong> <a href="{{persona.file_path}}" target="_blank"> Descargar </a></p>
+	</md-dialog-content>
+	<div class="md-actions" layout="row">
+		<span flex></span>
+		<md-button ng-click="answer(false)" style="margin-right:20px;" >
+				Cerrar
+		</md-button>
+	</div>
+</form>
+</md-dialog>
+
