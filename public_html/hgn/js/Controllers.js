@@ -143,6 +143,7 @@ app.controller('MainController', function ($scope, $timeout, $mdSidenav, $log, $
 
 	$scope.ingles = ['', 'Nulo (No tiene conocimientos del idioma.)', 'Principiante (Entiende textos y algunas expresiones al escuchar. No lo habla.)', 'Intermedio (Puede leerlo y escribirlo. Solo habla y entiende expresiones básicas.)', 'Avanzado (Puede leerlo y escribirlo. Capaz de establecer conversaciones.)', 'Nativo (Domina completamente el idioma.)'];
 
+	$scope.estado = ['', 'Aguascalientes', 'Baja California', 'Baja California Sur', 'Campeche', 'Chiapas', 'Chihuahua', 'Coahuila', 'Colima', 'Distrito Federal', 'Durango', 'Estado de México', 'Guanajuato', 'Guerrero', 'Hidalgo', 'Jalisco', 'Michoacán', 'Morelos', 'Nayarit', 'Nuevo León', 'Oaxaca', 'Puebla', 'Querétaro', 'Quintana Roo', 'San Luis Potosí', 'Sinaloa', 'Sonora', 'Tabasco', 'Tamaulipas', 'Tlaxcala', 'Veracruz', 'Yucatán', 'Zacatecas'];
 
 	$scope.personaDialog = function(ev, index) {
 		$scope.persona = $scope.personas[index];
