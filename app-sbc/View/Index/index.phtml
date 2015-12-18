@@ -178,9 +178,45 @@ nav li {
 					</div>
 					<div ng-tab-body="" class="tab-pane">
 						<input type="text" placeholder="Carrera" ng-model="forma.carrera" required>
-						<input type="text" placeholder="Institución" ng-model="forma.inst_carrera" required>
+						<select ng-model="forma.inst_carrera" required>
+							<option value="">Institución</option>
+							<option value="1">UANL</option>
+							<option value="2">UN</option>
+							<option value="3">UR</option>
+							<option value="4">ITESM</option>
+							<option value="5">UDEM</option>
+							<option value="6">Tec Milenio</option>
+							<option value="7">UMM</option>
+							<option value="8">CEU</option>
+							<option value="9">UM</option>
+							<option value="10">CEDIM</option>
+							<option value="11">IPADE</option>
+							<option value="12">UVM</option>
+							<option value="13">IRH</option>
+							<option value="14">Otro</option>
+						</select>
+						<input ng-show="forma.inst_carrera == 14" type="text" placeholder="Carrera" ng-model="forma.inst_carrera_otro">
+
 						<input type="text" placeholder="Maestría" ng-model="forma.maestria">
-						<input type="text" placeholder="Institución" ng-model="forma.inst_maestria">
+						<select ng-model="forma.inst_maestria">
+							<option value="">Institución</option>
+							<option value="1">UANL</option>
+							<option value="2">UN</option>
+							<option value="3">UR</option>
+							<option value="4">ITESM</option>
+							<option value="5">UDEM</option>
+							<option value="6">Tec Milenio</option>
+							<option value="7">UMM</option>
+							<option value="8">CEU</option>
+							<option value="9">UM</option>
+							<option value="10">CEDIM</option>
+							<option value="11">IPADE</option>
+							<option value="12">UVM</option>
+							<option value="13">IRH</option>
+							<option value="14">Otro</option>
+						</select>
+						<input ng-show="forma.inst_maestria == 14" type="text" placeholder="Carrera" ng-model="forma.inst_maestria_otro">
+
 						<select class="mitad" ng-model="forma.ingles" required>
 							<option value="">Inglés</option>
 							<option value="1">Nulo (No tiene conocimientos del idioma.)</option>
