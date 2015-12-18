@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-12-2015 a las 18:10:33
+-- Tiempo de generación: 18-12-2015 a las 22:16:41
 -- Versión del servidor: 10.1.8-MariaDB
 -- Versión de PHP: 5.6.14
 
@@ -23,7 +23,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `Persona`
+-- Estructura de tabla para la tabla `persona`
 --
 
 CREATE TABLE `persona` (
@@ -31,25 +31,28 @@ CREATE TABLE `persona` (
   `nombre` varchar(60) NOT NULL,
   `apellidos` varchar(60) NOT NULL,
   `edad` int(11) NOT NULL,
-  `residencia` text NOT NULL,
+  `residencia` int(11) NOT NULL,
   `sexo` enum('Masculino','Femenino') NOT NULL,
   `telefono` varchar(60) NOT NULL,
   `email` varchar(60) NOT NULL,
   `carrera` varchar(60) NOT NULL,
-  `inst_carrera` varchar(100) NOT NULL,
-  `maestria` varchar(60) NOT NULL,
-  `inst_maestria` varchar(100) NOT NULL,
-  `ingles` enum('alto','medio','bajo') NOT NULL,
-  `otros_idiomas` text NOT NULL,
-  `ultimo_puesto` text NOT NULL,
-  `empresa` varchar(60) NOT NULL,
-  `rango_sueldo` text NOT NULL,
-  `area1` text NOT NULL,
-  `tiempo1` varchar(20) NOT NULL,
-  `area2` text NOT NULL,
-  `tiempo2` varchar(20) NOT NULL,
-  `area3` text NOT NULL,
-  `tiempo3` varchar(20) NOT NULL
+  `inst_carrera` int(11) NOT NULL,
+  `maestria` varchar(60) DEFAULT NULL,
+  `inst_maestria` int(11) DEFAULT NULL,
+  `ingles` int(11) NOT NULL,
+  `otros_idiomas` text,
+  `ultimo_puesto` text,
+  `empresa` varchar(60) DEFAULT NULL,
+  `rango_sueldo` int(11) NOT NULL,
+  `area1` int(11) NOT NULL,
+  `tiempo1` int(11) NOT NULL,
+  `area2` int(11) DEFAULT NULL,
+  `tiempo2` int(11) DEFAULT NULL,
+  `area3` int(11) DEFAULT NULL,
+  `tiempo3` int(11) DEFAULT NULL,
+  `file_path` text NOT NULL,
+  `inst_carrera_otro` text,
+  `inst_maestria_otro` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -57,9 +60,9 @@ CREATE TABLE `persona` (
 --
 
 --
--- Indices de la tabla `Persona`
+-- Indices de la tabla `persona`
 --
-ALTER TABLE `Persona`
+ALTER TABLE `persona`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -67,10 +70,10 @@ ALTER TABLE `Persona`
 --
 
 --
--- AUTO_INCREMENT de la tabla `Persona`
+-- AUTO_INCREMENT de la tabla `persona`
 --
-ALTER TABLE `Persona`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `persona`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

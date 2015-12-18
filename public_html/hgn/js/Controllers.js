@@ -145,6 +145,8 @@ app.controller('MainController', function ($scope, $timeout, $mdSidenav, $log, $
 
 	$scope.estado = ['', 'Aguascalientes', 'Baja California', 'Baja California Sur', 'Campeche', 'Chiapas', 'Chihuahua', 'Coahuila', 'Colima', 'Distrito Federal', 'Durango', 'Estado de México', 'Guanajuato', 'Guerrero', 'Hidalgo', 'Jalisco', 'Michoacán', 'Morelos', 'Nayarit', 'Nuevo León', 'Oaxaca', 'Puebla', 'Querétaro', 'Quintana Roo', 'San Luis Potosí', 'Sinaloa', 'Sonora', 'Tabasco', 'Tamaulipas', 'Tlaxcala', 'Veracruz', 'Yucatán', 'Zacatecas'];
 
+	$scope.institucion = ['', 'UANL', 'UN', 'UR', 'ITESM', 'UDEM', 'Tec Milenio', 'UMM', 'CEU', 'UM', 'CEDIM', 'IPADE', 'UVM', 'IRH'];
+
 	$scope.personaDialog = function(ev, index) {
 		$scope.persona = $scope.personas[index];
 		$mdDialog.show({
