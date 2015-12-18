@@ -97,7 +97,7 @@ app.controller('MainController', function ($scope, $timeout, $mdSidenav, $log, $
 				if (response.data.message) {
 					$scope.message = response.data.message;
 				} else {
-					$scope.message = 'Error al guardar, favor de contactarse directamente.';
+					$scope.message = 'Error al guardar, favor de llenar todos los campos. Si el error persiste, favor de ponerse en contacto.';
 				}
 			}
 		});
