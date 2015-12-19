@@ -127,7 +127,7 @@ app.controller('MainController', function ($scope, $timeout, $mdSidenav, $log, $
 	$scope.$parent.loading = 'indeterminate';
 	$scope.personas = [];
 	$scope.persona = null;
-	// $scope.search = [];
+	$scope.search = [];
 	// $scope.search.area1 = null;
 
 	$http.post('Admin/ajaxGetPersonas', {})
