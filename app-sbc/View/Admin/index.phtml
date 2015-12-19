@@ -11,7 +11,7 @@
 		<md-content class="md-padding">
 		<md-input-container>
 			<label>Buscar Personas </label>
-			<input ng-model="search.$" />
+			<input ng-model="searchName" />
 		</md-input-container>
 		<md-input-container>
 			<label>Buscar áreas </label>
@@ -54,7 +54,7 @@
 			</md-select>
 		</md-input-container>
 			<md-list>
-				<md-list-item class="md-3-line" ng-repeat="persona in personas | filter:search:true">
+				<md-list-item class="md-3-line" ng-repeat="persona in personas | filter:search:true | filter:searchName">
 					<div class="md-list-item-text" layout="column">
 						<h3>{{ persona.nombre }} {{ persona.apellidos }}</h3>
 						<h4>{{ persona.empresa }}</h4>
