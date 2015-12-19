@@ -1,7 +1,7 @@
 <section id="pagecontent" layout="row" flex ng-controller="AdminController">
 <style type="text/css">
 	.tajetaConfig {
-		min-width: 600px;
+		min-width: 960px;
 	}
 </style>
 <md-card class="tajetaConfig">
@@ -11,7 +11,7 @@
 		<md-content class="md-padding">
 		<md-input-container>
 			<label>Buscar Personas </label>
-			<input ng-model="searchPersonas" />
+			<input ng-model="search.$" />
 		</md-input-container>
 		<md-input-container>
 			<label>Buscar áreas </label>
@@ -27,6 +27,30 @@
 				<md-option ng-repeat="sueldo in sueldo track by $index" value="{{$index}}">
 					{{sueldo}}
 				</md-option>
+			</md-select>
+		</md-input-container>
+		<md-input-container>
+			<label>Buscar ingles </label>
+			<md-select ng-model="search.ingles">
+				<md-option ng-repeat="ingles in ingles track by $index" value="{{$index}}">
+					{{ingles}}
+				</md-option>
+			</md-select>
+		</md-input-container>
+		<md-input-container>
+			<label>Buscar Residencia </label>
+			<md-select ng-model="search.residencia">
+				<md-option ng-repeat="estado in estado track by $index" value="{{$index}}">
+					{{estado}}
+				</md-option>
+			</md-select>
+		</md-input-container>
+		<md-input-container>
+			<label>Buscar sexo </label>
+			<md-select ng-model="search.sexo">
+				<md-option value="0"></md-option>
+				<md-option value="Masculino">Masculino</md-option>
+				<md-option value="Femenino">Femenino</md-option>
 			</md-select>
 		</md-input-container>
 			<md-list>

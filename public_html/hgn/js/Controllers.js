@@ -175,5 +175,20 @@ app.controller('MainController', function ($scope, $timeout, $mdSidenav, $log, $
 			delete $scope.search.rango_sueldo;
 		}
 	});
+	$scope.$watch('search.sexo', function() {
+		if ($scope.search.sexo == 0) {
+			delete $scope.search.sexo;
+		}
+	});
+	$scope.$watch('search.residencia', function() {
+		if ($scope.search.residencia == 0) {
+			delete $scope.search.residencia;
+		}
+	});
+	$scope.$watch('search.ingles', function() {
+		if ($scope.search.ingles == 0) {
+			delete $scope.search.ingles;
+		}
+	});
 });
 
