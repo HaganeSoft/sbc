@@ -126,6 +126,9 @@ app.controller('MainController', function ($scope, $timeout, $mdSidenav, $log, $
 .controller('AdminController', function ($scope, $timeout, $mdSidenav, $log, $http, $mdDialog, $mdToast) {
 	$scope.$parent.loading = 'indeterminate';
 	$scope.personas = [];
+	$scope.persona = null;
+	// $scope.search = [];
+	// $scope.search.area1 = null;
 
 	$http.post('Admin/ajaxGetPersonas', {})
 	.then(function(response) {
@@ -135,17 +138,17 @@ app.controller('MainController', function ($scope, $timeout, $mdSidenav, $log, $
 		$scope.$parent.loading = null;
 	});
 
-	$scope.areas =['0','Administración', 'Arquitectura', 'Construcción', 'Contabilidad', 'Compras', 'Crédito y Cobranza', 'Derecho', 'Dirección General', 'Diseño Industrial', 'Diseño Gráfico', 'Diseño Web', 'Distribución', 'Educación', 'Gastronomía', 'Gerencia General', 'Ingeniería', 'Investigación y Desarrollo', 'Logística', 'Mantenimiento', 'Medicina', 'Mercadotecnia', 'Operación', 'Producción', 'Publicidad', 'Recepción y Apoyo Administrativo', 'Recursos Humanos', 'Relaciones Públicas', 'Salud y Belleza', 'Servicio al Cliente', 'Sistemas Computacionales (Hardware)', 'Tecnologías de Información (Software)', 'Transportación', 'Turismo', 'Ventas'];
+	$scope.areas =['Áreas','Administración', 'Arquitectura', 'Construcción', 'Contabilidad', 'Compras', 'Crédito y Cobranza', 'Derecho', 'Dirección General', 'Diseño Industrial', 'Diseño Gráfico', 'Diseño Web', 'Distribución', 'Educación', 'Gastronomía', 'Gerencia General', 'Ingeniería', 'Investigación y Desarrollo', 'Logística', 'Mantenimiento', 'Medicina', 'Mercadotecnia', 'Operación', 'Producción', 'Publicidad', 'Recepción y Apoyo Administrativo', 'Recursos Humanos', 'Relaciones Públicas', 'Salud y Belleza', 'Servicio al Cliente', 'Sistemas Computacionales (Hardware)', 'Tecnologías de Información (Software)', 'Transportación', 'Turismo', 'Ventas'];
 
-	$scope.tiempo = ['', 'Menos de 1 año', 'De 1 a 3 años', 'De 3 a 5 años', 'De 5 a 10 años', 'Más de 10 años'];
+	$scope.tiempo = ['Tiempo', 'Menos de 1 año', 'De 1 a 3 años', 'De 3 a 5 años', 'De 5 a 10 años', 'Más de 10 años'];
 
-	$scope.sueldo = ['', '$5,000.00 - $10,000.00', '$10,000.00 - $15,000.00', '$15,000.00 - $20,000.00', '$20,000.00 - $30,000.00', '$30,000.00 - $40,000.00', '$40,000.00 - $50,000.00', '$50,000.00 - $70,000.00', '$70,000.00 - $90,000.00', '$90,00.00 - $120,000.00', '$120,000.00 - $150,000.00'];
+	$scope.sueldo = ['Sueldo', '$5,000.00 - $10,000.00', '$10,000.00 - $15,000.00', '$15,000.00 - $20,000.00', '$20,000.00 - $30,000.00', '$30,000.00 - $40,000.00', '$40,000.00 - $50,000.00', '$50,000.00 - $70,000.00', '$70,000.00 - $90,000.00', '$90,00.00 - $120,000.00', '$120,000.00 - $150,000.00'];
 
-	$scope.ingles = ['', 'Nulo (No tiene conocimientos del idioma.)', 'Principiante (Entiende textos y algunas expresiones al escuchar. No lo habla.)', 'Intermedio (Puede leerlo y escribirlo. Solo habla y entiende expresiones básicas.)', 'Avanzado (Puede leerlo y escribirlo. Capaz de establecer conversaciones.)', 'Nativo (Domina completamente el idioma.)'];
+	$scope.ingles = ['Inglés', 'Nulo (No tiene conocimientos del idioma.)', 'Principiante (Entiende textos y algunas expresiones al escuchar. No lo habla.)', 'Intermedio (Puede leerlo y escribirlo. Solo habla y entiende expresiones básicas.)', 'Avanzado (Puede leerlo y escribirlo. Capaz de establecer conversaciones.)', 'Nativo (Domina completamente el idioma.)'];
 
-	$scope.estado = ['', 'Aguascalientes', 'Baja California', 'Baja California Sur', 'Campeche', 'Chiapas', 'Chihuahua', 'Coahuila', 'Colima', 'Distrito Federal', 'Durango', 'Estado de México', 'Guanajuato', 'Guerrero', 'Hidalgo', 'Jalisco', 'Michoacán', 'Morelos', 'Nayarit', 'Nuevo León', 'Oaxaca', 'Puebla', 'Querétaro', 'Quintana Roo', 'San Luis Potosí', 'Sinaloa', 'Sonora', 'Tabasco', 'Tamaulipas', 'Tlaxcala', 'Veracruz', 'Yucatán', 'Zacatecas'];
+	$scope.estado = ['Estado', 'Aguascalientes', 'Baja California', 'Baja California Sur', 'Campeche', 'Chiapas', 'Chihuahua', 'Coahuila', 'Colima', 'Distrito Federal', 'Durango', 'Estado de México', 'Guanajuato', 'Guerrero', 'Hidalgo', 'Jalisco', 'Michoacán', 'Morelos', 'Nayarit', 'Nuevo León', 'Oaxaca', 'Puebla', 'Querétaro', 'Quintana Roo', 'San Luis Potosí', 'Sinaloa', 'Sonora', 'Tabasco', 'Tamaulipas', 'Tlaxcala', 'Veracruz', 'Yucatán', 'Zacatecas'];
 
-	$scope.institucion = ['', 'UANL', 'UN', 'UR', 'ITESM', 'UDEM', 'Tec Milenio', 'UMM', 'CEU', 'UM', 'CEDIM', 'IPADE', 'UVM', 'IRH', 'Otro'];
+	$scope.institucion = ['Institución', 'UANL', 'UN', 'UR', 'ITESM', 'UDEM', 'Tec Milenio', 'UMM', 'CEU', 'UM', 'CEDIM', 'IPADE', 'UVM', 'IRH', 'Otro'];
 
 	$scope.personaDialog = function(ev, index) {
 		$scope.persona = $scope.personas[index];
@@ -156,8 +159,21 @@ app.controller('MainController', function ($scope, $timeout, $mdSidenav, $log, $
 			targetEvent: ev,
 			clickOutsideToClose:true,
 			scope: $scope,
+			bindToController: true,
+			resolve: true,
 			preserveScope: true
 		});
 	};
+
+	$scope.$watch('search.area1', function() {
+		if ($scope.search.area1 == 0) {
+			delete $scope.search.area1;
+		}
+	});
+	$scope.$watch('search.rango_sueldo', function() {
+		if ($scope.search.rango_sueldo == 0) {
+			delete $scope.search.rango_sueldo;
+		}
+	});
 });
 

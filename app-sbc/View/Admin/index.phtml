@@ -13,8 +13,24 @@
 			<label>Buscar Personas </label>
 			<input ng-model="searchPersonas" />
 		</md-input-container>
+		<md-input-container>
+			<label>Buscar áreas </label>
+			<md-select ng-model="search.area1">
+				<md-option ng-repeat="area in areas track by $index" value="{{$index}}">
+					{{area}}
+				</md-option>
+			</md-select>
+		</md-input-container>
+		<md-input-container>
+			<label>Buscar salario </label>
+			<md-select ng-model="search.rango_sueldo">
+				<md-option ng-repeat="sueldo in sueldo track by $index" value="{{$index}}">
+					{{sueldo}}
+				</md-option>
+			</md-select>
+		</md-input-container>
 			<md-list>
-				<md-list-item class="md-3-line" ng-repeat="persona in personas | filter:searchPersonas">
+				<md-list-item class="md-3-line" ng-repeat="persona in personas | filter:search:true">
 					<div class="md-list-item-text" layout="column">
 						<h3>{{ persona.nombre }} {{ persona.apellidos }}</h3>
 						<h4>{{ persona.empresa }}</h4>

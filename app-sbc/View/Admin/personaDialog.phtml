@@ -15,7 +15,6 @@
 			float: left;
 			margin: 3px 10px;
 		}
-
 		.clear {
 			clear: left;
 		}
@@ -29,7 +28,7 @@
 		<span ng-show"persona.email" class="cell"><strong>Email:</strong> {{persona.email}}</span>
 		<span ng-show"persona.carrera" class="cell clear"><strong>Carrera:</strong> {{persona.carrera}}</span>
 		<span ng-show"persona.inst_carrera != 14" class="cell clear"><strong>Institución carrera:</strong> {{institucion[persona.inst_carrera]}}</span>
-		<span ng-show"persona.inst_carrera == 14" class="cell clear"><strong>Institución maestria:</strong> {{persona.inst_carrera_otro}}</span>
+		<span ng-show"persona.inst_carrera == 14" class="cell clear"><strong>Institución carrera:</strong> {{persona.inst_carrera_otro}}</span>
 		<span ng-show"persona.maestria" class="cell clear"><strong>Maestría:</strong> {{persona.maestria}}</span>
 		<span ng-show"persona.inst_maestria != 14" class="cell clear"><strong>Institución maestria:</strong> {{institucion[persona.inst_maestria]}}</span>
 		<span ng-show"persona.inst_maestria == 14" class="cell clear"><strong>Institución maestria:</strong> {{persona.inst_maestria_otro}}</span>
@@ -44,7 +43,7 @@
 		<span ng-show"persona.tiempo2" class="cell"><strong>Tiempo:</strong> {{tiempo[persona.tiempo2]}}</span>
 		<span ng-show"persona.area3" class="cell clear"><strong>Área 3:</strong> {{areas[persona.area3]}}</span>
 		<span ng-show"persona.tiempo3" class="cell"><strong>Tiempo:</strong> {{tiempo[persona.tiempo3]}}</span>
-		<span ng-show"persona.file_path" class="cell clear"><strong>Currículum:</strong> <a href="{{persona.file_path}}" target="_blank"> Descargar </a></p>
+		<span ng-show"persona.file_path" class="cell clear"><strong>Currículum:</strong> <a href="{{persona.file_path}}" target="_blank"> Descargar </a></span>
 	</md-dialog-content>
 	<div class="md-actions" layout="row">
 		<span flex></span>
