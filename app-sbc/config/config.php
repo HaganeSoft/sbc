@@ -23,7 +23,7 @@ class Config {
 				// 'db_user' => 'root',
 				// 'db_password' => '',
 				'session_time' => 3600,
-				'document_root' => '/hgn/'
+				'document_root' => '/curriculum/'
 			);
 	}
 
