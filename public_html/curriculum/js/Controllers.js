@@ -22,7 +22,7 @@ app.controller('MainController', function ($scope, $timeout, $mdSidenav, $log, $
 		$location.path( path );
 	};
 
-	$scope.loading = null;
+	//$scope.loading = null;
 	$scope.toolbar_title = 'Administrador';
 
 	/**
@@ -124,7 +124,7 @@ app.controller('MainController', function ($scope, $timeout, $mdSidenav, $log, $
 	};
 })
 .controller('AdminController', function ($scope, $timeout, $mdSidenav, $log, $http, $mdDialog, $mdToast) {
-	$scope.$parent.loading = 'indeterminate';
+	$scope.loading = 'Cargando...';
 	$scope.personas = [];
 	$scope.persona = null;
 	$scope.search = [];
@@ -135,7 +135,7 @@ app.controller('MainController', function ($scope, $timeout, $mdSidenav, $log, $
 		$scope.personas = response.data;
 	})
 	.finally(function() {
-		$scope.$parent.loading = null;
+		$scope.loading = null;
 	});
 
 	$scope.areas =['Áreas','Administración', 'Arquitectura', 'Construcción', 'Contabilidad', 'Compras', 'Crédito y Cobranza', 'Derecho', 'Dirección General', 'Diseño Industrial', 'Diseño Gráfico', 'Diseño Web', 'Distribución', 'Educación', 'Gastronomía', 'Gerencia General', 'Ingeniería', 'Investigación y Desarrollo', 'Logística', 'Mantenimiento', 'Medicina', 'Mercadotecnia', 'Operación', 'Producción', 'Publicidad', 'Recepción y Apoyo Administrativo', 'Recursos Humanos', 'Relaciones Públicas', 'Salud y Belleza', 'Servicio al Cliente', 'Sistemas Computacionales (Hardware)', 'Tecnologías de Información (Software)', 'Transportación', 'Turismo', 'Ventas'];
@@ -166,22 +166,23 @@ app.controller('MainController', function ($scope, $timeout, $mdSidenav, $log, $
 	};
 
 	$scope.$watch('search.area1', function() {
+		$scope.loading = 'Cargando...';
 		if ($scope.search.area1 == 0) {
 			$http.post('Admin/ajaxGetPersonas', {})
 			.then(function(response) {
 				$scope.personas = response.data;
 			})
 			.finally(function() {
-				$scope.$parent.loading = null;
+				$scope.loading = null;
 				delete $scope.search.area1;
 			});
-		} else {
+		} else if($scope.search.area1 != null) {
 			$http.post('Admin/ajaxGetPersonasAreas', {area1: $scope.search.area1})
 			.then(function(response) {
 				$scope.personas = response.data;
 			})
 			.finally(function() {
-				$scope.$parent.loading = null;
+				$scope.loading = null;
 			});
 		}
 	});
