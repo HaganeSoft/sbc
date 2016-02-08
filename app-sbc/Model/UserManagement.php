@@ -21,6 +21,11 @@ class UserManagement {
 
 		return $users;
 	}
+
+	function getPersonasAreas($data) {
+		$users = $this->db->query('SELECT * FROM Persona WHERE area1=:area OR area2=:area OR area3=:area', $data);
+		return $users;
+	}
 }
 
 ?>

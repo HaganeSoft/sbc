@@ -167,7 +167,22 @@ app.controller('MainController', function ($scope, $timeout, $mdSidenav, $log, $
 
 	$scope.$watch('search.area1', function() {
 		if ($scope.search.area1 == 0) {
-			delete $scope.search.area1;
+			$http.post('Admin/ajaxGetPersonas', {})
+			.then(function(response) {
+				$scope.personas = response.data;
+			})
+			.finally(function() {
+				$scope.$parent.loading = null;
+				delete $scope.search.area1;
+			});
+		} else {
+			$http.post('Admin/ajaxGetPersonasAreas', {area1: $scope.search.area1})
+			.then(function(response) {
+				$scope.personas = response.data;
+			})
+			.finally(function() {
+				$scope.$parent.loading = null;
+			});
 		}
 	});
 	$scope.$watch('search.rango_sueldo', function() {
